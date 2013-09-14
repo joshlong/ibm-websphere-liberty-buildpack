@@ -26,8 +26,8 @@ module LibertyBuildpack::Repository
 
     it 'should load index' do
       LibertyBuildpack::Util::DownloadCache.stub(:new).and_return(application_cache)
-      application_cache.stub(:get).with('test-uri/index.yml')
-      .and_yield(File.open('spec/fixtures/test-index.yml'))
+      application_cache.stub(:get).with('test-uri/index.yml').
+      and_yield(File.open('spec/fixtures/test-index.yml'))
       VersionResolver.stub(:resolve).with('test-version', %w(resolved-version)).and_return('resolved-version')
 
       repository_index = RepositoryIndex.new('test-uri')

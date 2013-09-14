@@ -28,33 +28,33 @@ module LibertyBuildpack::Jre
     TEST_TOTAL_EXCESS = MemorySize.new('200B')
 
     it 'should fail to construct if name is nil' do
-      expect { MemoryBucket.new(nil, TEST_WEIGHTING, TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid MemoryBucket name/)
+      expect { MemoryBucket.new(nil, TEST_WEIGHTING, TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid MemoryBucket name/)
     end
 
     it 'should fail to construct if name is the empty string' do
-      expect { MemoryBucket.new('', TEST_WEIGHTING, TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid MemoryBucket name/)
+      expect { MemoryBucket.new('', TEST_WEIGHTING, TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid MemoryBucket name/)
     end
 
     it 'should fail to construct if weighting is nil' do
-      expect { MemoryBucket.new(TEST_NAME, nil, TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid weighting/)
+      expect { MemoryBucket.new(TEST_NAME, nil, TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid weighting/)
     end
 
     it 'should fail to construct if weighting is not numeric' do
-      expect { MemoryBucket.new(TEST_NAME, 'x', TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid weighting/)
+      expect { MemoryBucket.new(TEST_NAME, 'x', TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid weighting/)
     end
 
     it 'should fail to construct if weighting is negative' do
-      expect { MemoryBucket.new(TEST_NAME, -0.1, TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid weighting/)
+      expect { MemoryBucket.new(TEST_NAME, -0.1, TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid weighting/)
     end
 
     it 'should fail to construct if weighting is greater than 1' do
-      expect { MemoryBucket.new(TEST_NAME, 1.1, TEST_SIZE, true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid weighting/)
+      expect { MemoryBucket.new(TEST_NAME, 1.1, TEST_SIZE, true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid weighting/)
     end
 
     it 'should record a non-nil size' do
@@ -73,38 +73,43 @@ module LibertyBuildpack::Jre
     end
 
     it 'should fail to construct if size is non-numeric' do
-      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, 'x', true, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid\ 'size'\ parameter/)
+      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, 'x', true, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid\ 'size'\ parameter/)
     end
 
     it 'should fail to construct if adjustable is not true or false' do
-      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, nil, TEST_TOTAL_MEMORY) }
-      .to raise_error(/Invalid\ 'adjustable'\ parameter/)
+      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, nil, TEST_TOTAL_MEMORY) }.
+        to raise_error(/Invalid\ 'adjustable'\ parameter/)
     end
 
     it 'should record the size if total_memory is nil' do
-      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).size).to eq(TEST_SIZE)
+      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).size).
+      to eq(TEST_SIZE)
     end
 
     it 'should return a zero excess if total_memory is nil' do
-      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).excess) .to eq(MemorySize::ZERO)
+      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).excess).
+      to eq(MemorySize::ZERO)
     end
 
     it 'should return a zero adjustable weighting if total_memory is nil' do
-      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).adjustable_weighting).to eq(0)
+      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).adjustable_weighting).
+      to eq(0)
     end
 
     it 'should return a nil default size if total_memory is nil' do
-      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).default_size).to be_nil
+      expect(MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).default_size).
+      to be_nil
     end
 
     it 'should cope with adjust being called if total_memory is nil' do
-      MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).adjust(MemorySize::ZERO, 0)
+      MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, nil).
+      adjust(MemorySize::ZERO, 0)
     end
 
     it 'should fail to construct if total_memory is non-numeric' do
-      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, 'x') }
-      .to raise_error(/Invalid\ 'total_memory'\ parameter/)
+      expect { MemoryBucket.new(TEST_NAME, TEST_WEIGHTING, TEST_SIZE, true, 'x') }.
+        to raise_error(/Invalid\ 'total_memory'\ parameter/)
     end
 
     it 'should calculate the excess memory correctly' do

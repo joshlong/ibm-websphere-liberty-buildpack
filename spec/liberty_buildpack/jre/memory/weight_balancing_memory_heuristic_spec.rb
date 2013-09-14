@@ -59,43 +59,43 @@ module LibertyBuildpack::Jre
 
     it 'should fail if the configured weightings sum to more than 1' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.4, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.4, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
     it 'should fail if the heap weighting is less than 0' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => -0.1, 'permgen' => 0.3, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => -0.1, 'permgen' => 0.3, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
     it 'should fail if the permgen weighting is less than 0' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => -0.3, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => -0.3, 'stack' => 0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
     it 'should fail if the stack weighting is less than 0' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.3, 'stack' => -0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.3, 'stack' => -0.1, 'native' => 0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
     it 'should fail if the native weighting is less than 0' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.3, 'stack' => 0.1, 'native' => -0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => 0.5, 'permgen' => 0.3, 'stack' => 0.1, 'native' => -0.1 }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
     it 'should fail if a configured weighting is invalid' do
       with_memory_limit('1m') do
-        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => TEST_HEAP_WEIGHTING, 'permgen' => TEST_PERMGEN_WEIGHTING, 'stack' => TEST_STACK_WEIGHTING, 'native' => 'x' }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }
-        .to raise_error(/Invalid/)
+        expect { WeightBalancingMemoryHeuristic.new({ }, { 'heap' => TEST_HEAP_WEIGHTING, 'permgen' => TEST_PERMGEN_WEIGHTING, 'stack' => TEST_STACK_WEIGHTING, 'native' => 'x' }, VALID_SIZES, VALID_HEURISTICS, JAVA_OPTS).resolve }.
+          to raise_error(/Invalid/)
       end
     end
 
