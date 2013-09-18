@@ -15,5 +15,5 @@
 
 # Configuration for the Liberty container
 ---
-repository_root: "http://hurgsa.ibm.com/~pradine/public/buildpack/wlp/"
+repository_root: "http://file.w3.bluemix.net/buildpack/wlp/"
 version: 8.5.+
