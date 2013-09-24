@@ -15,5 +15,5 @@
 
 # Configuration for the Liberty container
 ---
-repository_root: "http://file.w3.bluemix.net/buildpack/wlp/"
+repository_root: "http://ec2-50-17-51-6.compute-1.amazonaws.com:8080/a/fs/buildpack/wlp/"
 version: 8.5.+
